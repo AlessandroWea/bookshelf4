@@ -1,0 +1,9 @@
+mysql:
+	dbname: bookshelf4
+	user: root
+	password: ''
+
+pgsql:
+	dbname: bookshefl4
+	user: root
+	password: ''

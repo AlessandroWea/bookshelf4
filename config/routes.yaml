@@ -1,0 +1,4 @@
+'': 'home/index'
+'posts': 'posts/index'
+'post/([0-9]+)': 'posts/index/$1'
+'admin': 'admin/index'
