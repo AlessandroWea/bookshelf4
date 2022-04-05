@@ -6,5 +6,5 @@ namespace Malordo\Router;
 
 interface RouterInterface
 {
-    public function dispatch() : void;
+    public function dispatch(array $routes) : void;
 }

@@ -3,7 +3,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Malordo\\": "core/"
+            "Malordo\\": "core/",
+            "app\\": "src/"
         }
     },
     "authors": [
