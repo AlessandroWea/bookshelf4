@@ -33,4 +33,11 @@ class HomeController extends BaseController
             'users' => $user_repository->findAll(),
         ]);
     }
+
+    public function actionView(int $id)
+    {
+        $this->render('home/view.php', [
+
+        ]);
+    }
 }

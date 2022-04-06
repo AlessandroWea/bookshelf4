@@ -53,5 +53,7 @@ class Router implements RouterInterface
             echo $e->getMessage();
             die;
         }
+
+        echo '404 NOT FOUND';
     }
 }

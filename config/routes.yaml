@@ -1,4 +1,8 @@
 '': 'home/index'
-'posts': 'posts/index'
-'post/([0-9]+)': 'posts/index/$1'
-'admin': 'admin/index'
+'review/([0-9]+)': 'home/view/$1'
+
+'signup': 'security/signup'
+'login': 'security/login'
+'logout': 'security/logout'
+
+'profile/([0-9]+)': 'profile/index/$1'
