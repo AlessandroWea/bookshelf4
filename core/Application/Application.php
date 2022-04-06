@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Malordo\Application;
 
 use Malordo\Router\RouterInterface;
-use Symfony\Component\Yaml\Yaml;
 
 class Application
 {
@@ -28,10 +27,10 @@ class Application
         $this->startSession();
 
         //load configs
-        $this->routes = $this->loadRoutes();
-
+        $this->loadConfigs();
+        
         //pass routers to Router
-        $this->router->dispatch($this->routes);
+        $this->router->dispatch(Config::getRoutes());
     }
 
     private function startSession()
@@ -54,11 +53,9 @@ class Application
         define('IMG_PATH', APP_ROOT . '/' . 'public/img');
     }
 
-    private function loadRoutes() : array
+    private function loadConfigs() : void
     {
-        if(!file_exists(CONFIG_PATH . 'routes.yaml'))
-            throw new \Exception('File doesnt exist');
-        return Yaml::parseFile(CONFIG_PATH . 'routes.yaml');
+        Config::loadConfigs();
     }
 
 }
