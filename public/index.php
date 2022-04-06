@@ -5,6 +5,7 @@ declare(strict_types=1);
 require '../vendor/autoload.php';
 
 include '../src/lib/debug_func.php';
+include '../src/lib/html.php';
 
 define('ROOT_PATH', realpath(dirname(__FILE__)));
 

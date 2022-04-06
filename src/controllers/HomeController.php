@@ -25,17 +25,6 @@ class HomeController extends BaseController
     {
         $name = $this->request->query('name');
 
-        // $data = [
-        //     'name' => 'ale',
-        //     'age' => '11',
-        // ];
-
-        // if(UserValidator::validate($data))
-        //     echo 'success validation';
-        // else {
-        //     echo 'Name error: ' . (UserValidator::getErrors()['name'] ?? 'No errors') . '<br>';
-        //     echo 'Age error: ' . (UserValidator::getErrors()['age'] ?? 'No errors') . '<br>';
-        // }
         $user_repository = new UserRepository();
 
         $this->render('home/index.php', [
