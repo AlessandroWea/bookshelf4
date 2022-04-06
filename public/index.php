@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 require '../vendor/autoload.php';
 
+include '../src/lib/debug_func.php';
+
 define('ROOT_PATH', realpath(dirname(__FILE__)));
 
 use Malordo\Application\Application;

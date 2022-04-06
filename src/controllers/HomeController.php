@@ -11,8 +11,6 @@ use Malordo\Session\Session;
 
 class HomeController extends BaseController
 {
-    private $request;
-
     public function __construct()
     {
         parent::__construct();
@@ -23,7 +21,7 @@ class HomeController extends BaseController
     public function actionIndex()
     {
         $name = $this->request->query('name');
-        
+
         $this->render('home/index.php', [
             'name' => $name,
             'lastname' => $this->session->get('lastname', 'anonus'),
