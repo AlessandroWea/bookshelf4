@@ -6,6 +6,8 @@ namespace Malordo\Base;
 
 class View
 {
+    public $layout;
+
     public function __construct()
     {
         $this->layoutFolder = TEMPLATE_PATH . 'layouts/';
@@ -32,4 +34,5 @@ class View
 		header('Location: '.$url);
 		exit();
 	}
+
 }

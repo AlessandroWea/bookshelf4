@@ -1,6 +1,8 @@
 server {
     server_name shelf.my;
-    root /www/bookshelf4/public;
+    root /www/bookshelf4/;
+
+
 
     location / {
         try_files $uri /index.php$is_args$args;

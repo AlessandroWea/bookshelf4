@@ -1,5 +1,5 @@
 <?php
-    $active = $active ?? 'home';
+  $active = $active ?? 'home';
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -13,6 +13,7 @@
         <li class="nav-item">
           <a class="nav-link <?= $active == 'home' ? 'active' : ''?>" href="#">Home</a>
         </li>
+        <?php if(auth('anon')): ?>
         <!-- if not logged in -->
         <li class="nav-item">
           <a class="nav-link <?= $active === 'login' ? 'active' : ''?>" href="/login">Log in</a>
@@ -20,10 +21,13 @@
         <li class="nav-item">
           <a class="nav-link <?= $active === 'signup' ? 'active' : ''?>" href="/signup">Sign up</a>
         </li>
-        <!-- when logged in
-        <li class="nav-item">
-          <a class="nav-link" href="/profile/(current_user_id)">Profile</a>
-        </li> -->
+        <?php endif ?>
+        <?php if(auth('admin')): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile/(current_user_id)">Profile</a>
+          </li>
+        <?php endif ?>
+
     </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

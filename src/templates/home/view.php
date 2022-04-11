@@ -3,15 +3,15 @@
 <div class="container">
     <div class="row">
         <div class="header">
-            <h1>'Some book' by Some Author</h1>
+            <h1>'<?=$review['bookname']?>' by <?=$review['authorname']?></h1>
         </div>
         <div class="info">
-            <p>Reviewer: <a id="reviewer-username" href="/profile/1">Tester</a></p>
-            <p>Theme: You may like this trash!</p>
+            <p>Reviewer: <a id="reviewer-username" href="/profile/<?=$review['user_id']?>"><?=$review['username']?></a></p>
+            <p>Theme: <?=$review['theme']?></p>
         </div>
         <hr>
         <div class="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, dolores tenetur vero deserunt velit quae, illo eius sit reprehenderit laborum earum nostrum nobis distinctio quas, mollitia quam vitae blanditiis ex! Eos eligendi quidem fuga similique hic minus. Aperiam soluta veniam incidunt quis natus doloribus sit alias labore veritatis, nesciunt dolorum. Officiis iste numquam placeat velit amet. Dolore temporibus blanditiis perferendis debitis at laboriosam accusamus dolores illum quaerat, ipsa nostrum! Tempore, magnam iure veritatis quibusdam fugiat vero iste aperiam consectetur quaerat corrupti recusandae ab reiciendis quam, quia sapiente ipsum! Obcaecati minus modi ea illum sunt praesentium neque accusantium beatae vel natus?
+            <?=$review['text']?>
         </div>
         <hr>
         <div class="button-container">
@@ -28,7 +28,7 @@
                 </div>
                 <hr>
 
-                <h2>Comments: <span id="comments-count"><?=$comments_count;?></span></h2>
+                <h2>Comments: <span id="comments-count"><?=0;?></span></h2>
 				<div class="comment-box">
 					<div><img width="30px" src="/img/default.png" alt="avatar"></div>
 					<div>

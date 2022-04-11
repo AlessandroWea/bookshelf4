@@ -11,8 +11,8 @@ class UserValidator extends BaseValidator
     public static function rules() : array
     {
         return [
-            'name' => 'required|string',
-            'age' => 'required|integer',
+            'email' => ['string', 'required'],
+            'password' => ['required', 'range' => [4,10]],
         ];
     }
 }

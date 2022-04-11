@@ -17,10 +17,10 @@ class Database
         $this->credentials = Config::getDbCredentials();
     }
 
-	public function execute($sql, $params = [])
+	public function execute($sql, $arr = [])
 	{
         $params = [
-            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_EMULATE_PREPARES => true,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ];
 		try {
@@ -28,30 +28,15 @@ class Database
 			$db = new PDO($dsn, $this->credentials['user'],$this->credentials['password'], $params);
     
 			$query = $db->prepare($sql);
-	
-			foreach ($params as $key => $value) {
-				if(is_numeric($value))
-				{
-					@$query->bindParam($key, intval($value), PDO::PARAM_INT);
-				}
-				else
-				{
-					$query->bindParam($key, $value, PDO::PARAM_STR);
-				}
-			}
-	
-			$query->execute();
-	
+			$query->execute($arr);
 			$errInfo = $query->errorInfo();
 			if($errInfo[0] !== PDO::ERR_NONE)
 			{
-				throw new \Exception($errInfo[2]);
+				echo $errInfo[2];
+				exit();
 			}
-	
 			$db = null;
-	
 			return $query;
-
 		} catch (PDOException $ex) {
 			echo $ex->getMessage();
 			die;

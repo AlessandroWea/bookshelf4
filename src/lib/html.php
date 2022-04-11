@@ -1,5 +1,7 @@
 <?php
 
+use app\utils\Auth;
+
 function render(string $filename, array $args = [])
 {
     $path = TEMPLATE_PATH . $filename;
@@ -12,3 +14,34 @@ function render(string $filename, array $args = [])
 
     return false;
 }
+
+function renderController(string $controller, $action, $vars = [])
+{
+    call_user_func([new $controller, $action]);
+}
+
+function auth(string $role)
+{
+    return Auth::is($role);
+}
+
+function asset(string $path)
+{
+    return '/public/' . $path;
+}
+
+// function path(string $name, array $params = [])
+// {
+//     // Application::getRoutes();
+//     // foreach($route as $route)
+//     // {
+//     //     if($route['name'] === $name)
+//     //     {
+//     //         $url = 
+//     //     }
+//     // }
+//     //get routes from somewhere
+//     //if 'name' equeals one from routes
+//     //  construct url
+//     //return url
+// }

@@ -42,14 +42,16 @@ class Router implements RouterInterface
                     //get action method through classes' reflection
                     $reflection_object = new ReflectionClass($controllerFullName);
                     $method = $reflection_object->getMethod($actionName);
-
                     //invoke action with parameters left in $segments
                     $method->invokeArgs(new $controllerFullName, $segments);
-
+                    
                     return;
                 }
             }
         } catch(\ReflectionException $e) {
+            echo $e->getMessage();
+            die;
+        } catch(\Exception $e) {
             echo $e->getMessage();
             die;
         }

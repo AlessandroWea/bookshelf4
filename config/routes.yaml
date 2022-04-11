@@ -6,3 +6,8 @@
 'logout': 'security/logout'
 
 'profile/([0-9]+)': 'profile/index/$1'
+
+'admin': 'admin/index'
+'admin/users': 'admin/users'
+
+'get/reviews': 'home/getReviews'

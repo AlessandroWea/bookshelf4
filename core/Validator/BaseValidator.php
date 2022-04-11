@@ -11,9 +11,33 @@ class BaseValidator implements ValidatorInterface
 
     protected static array $errors = [];
 
-    public static function validate(array $data) : bool
+    public static function validate(array $data) : array
     {
-        return true;
+        $rules = static::rules();
+        $errors = [];
+        foreach($data as $item => $value){
+
+            $current_rules = $rules[$item];
+            foreach($current_rules as $rule_index => $rule){
+                if($rule == 'string'){
+                    if(!is_string($value)){
+                        $errors[$item][] = "The field must be string";
+                    }
+                }
+                else if($rule == 'required'){
+                    if(empty($value)){
+                        $errors[$item][] = "The field is required";
+                    }
+                }
+                else if(is_array($rule) && $rule_index == 'range'){
+                    if(strlen($value) < $rule[0] || strlen($value) > $rule[1]){
+                        $errors[$item][] = "The field must be in range $rule[0] - $rule[1]";
+                    }
+                }
+            }
+        }
+
+        return $errors;
     }
 
     public static function getErrors() : array

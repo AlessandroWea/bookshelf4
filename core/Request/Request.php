@@ -27,6 +27,19 @@ class Request
 		return $url;
     }
 
+    public function getData() : ?Object
+    {
+        $data = file_get_contents("php://input");
+        $obj = json_decode($data);
+
+        return $obj;
+    }
+
+    public function isPost()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
+
     public function input(string $key)
     {
         return $_POST[$key] ?? null;

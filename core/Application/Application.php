@@ -10,7 +10,6 @@ class Application
 {
     private RouterInterface $router;
     private string $app_dirname;
-    private array $routes;
 
     public function __construct(string $app_dirname, RouterInterface $router)
     {
@@ -36,6 +35,7 @@ class Application
     private function startSession()
     {
         session_start();
+        $_SESSION['role'] = 'anon';
     }
 
     private function defineConstants()
