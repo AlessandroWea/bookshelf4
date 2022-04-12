@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
-use app\repositories\UserRepository;
+use app\models\User;
 use app\validators\UserValidator;
 
 use Malordo\Base\BaseController;
@@ -34,9 +34,9 @@ class AdminController extends BaseController
 
     public function actionUsers()
     {
-        $user_repository = new UserRepository();
+        $user_model = new User();
         $this->render('admin/users.php', [
-            'users' => $user_repository->findAll(),
+            'users' => $user_model->findAll(),
         ]);
     }
 

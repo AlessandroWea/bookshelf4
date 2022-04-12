@@ -17,12 +17,13 @@ class HomeController extends BaseController
 
     public function actionIndex()
     {
-        $review_model = new Review();
         $page = $this->request->query('page') ?? 1;
-        $total_count_of_reviews = $review_model->findAllCount();
+
+        $total_count_of_reviews = Review::findAllCount();
         $last_page = ceil($total_count_of_reviews/self::REVIEWS_PER_PAGE);
         $offset = ($page-1) * self::REVIEWS_PER_PAGE;
-        $reviews = $review_model->findAllFromRange($offset, self::REVIEWS_PER_PAGE);
+
+        $reviews = Review::findAllFromRange($offset, self::REVIEWS_PER_PAGE);
 
         $this->render('home/index.php', compact('reviews', 'page', 'last_page', 'total_count_of_reviews'));
     }
@@ -41,9 +42,8 @@ class HomeController extends BaseController
 
     public function actionView(int $id)
     {
-        $review_model = new Review();
 
-        if(($review = $review_model->find($id)) === false)
+        if(($review = Review::find($id)) === false)
             die('404 not found');
 
         $this->render('home/view.php', [
