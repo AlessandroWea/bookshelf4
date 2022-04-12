@@ -16,7 +16,7 @@ function make_users_list(where, users = [])
     where.innerHTML = users_list;
 }
 
-function make_comments_list(where, comments = [])
+function make_comments_list(comments = [])
 {
     let comments_list = '';
 
@@ -34,7 +34,7 @@ function make_comments_list(where, comments = [])
 
     });
 
-    where.innerHTML = comments_list;
+    return comments_list;
 }
 
 

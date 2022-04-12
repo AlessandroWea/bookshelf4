@@ -5,16 +5,10 @@ namespace app\controllers;
 use Malordo\Base\BaseController;
 use app\validators\UserValidator;
 use app\models\User;
+use app\utils\Auth;
 
 class SecurityController extends BaseController
 {
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->user_model = new User();
-    }
-
     public function actionLogin()
     {
         $error = '';
@@ -25,9 +19,10 @@ class SecurityController extends BaseController
             $email = $this->request->input('email');
             $password = $this->request->input('password');
 
-            $user = $this->user_model->findByEmail($email);
+            $user = User::findByEmail($email);
             if($user){
                 if(password_verify($password, $user['password'])){
+                    Auth::auth($user);
                     $this->redirect('/');
                 }
             }

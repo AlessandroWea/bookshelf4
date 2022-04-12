@@ -13,18 +13,21 @@
         <li class="nav-item">
           <a class="nav-link <?= $active == 'home' ? 'active' : ''?>" href="#">Home</a>
         </li>
-        <?php if(auth('anon')): ?>
-        <!-- if not logged in -->
-        <li class="nav-item">
-          <a class="nav-link <?= $active === 'login' ? 'active' : ''?>" href="/login">Log in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link <?= $active === 'signup' ? 'active' : ''?>" href="/signup">Sign up</a>
-        </li>
+        <?php if(!logged()): ?>
+          <!-- if not logged in -->
+          <li class="nav-item">
+            <a class="nav-link <?= $active === 'login' ? 'active' : ''?>" href="/login">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <?= $active === 'signup' ? 'active' : ''?>" href="/signup">Sign up</a>
+          </li>
         <?php endif ?>
-        <?php if(auth('admin')): ?>
+        <?php if(logged()): ?>
           <li class="nav-item">
             <a class="nav-link" href="/profile/(current_user_id)">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/write">Write</a>
           </li>
         <?php endif ?>
 

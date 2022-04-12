@@ -28,4 +28,9 @@ class Review
         $query = Database::execute("SELECT COUNT(*) FROM reviews");
         return $query->fetch()['COUNT(*)'];
     }
+
+    public static function add($user_id, $bookname, $authorname, $theme, $text)
+    {
+        return Database::insert('reviews', compact('user_id', 'bookname', 'authorname', 'theme', 'text'));
+    }
 }

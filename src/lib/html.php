@@ -20,14 +20,14 @@ function renderController(string $controller, $action, $vars = [])
     call_user_func([new $controller, $action]);
 }
 
-function auth(string $role)
+function is(string $role)
 {
     return Auth::is($role);
 }
 
-function asset(string $path)
+function logged()
 {
-    return '/public/' . $path;
+    return Auth::logged();
 }
 
 // function path(string $name, array $params = [])

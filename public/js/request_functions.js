@@ -50,33 +50,4 @@ function sendRequest(method, url, body = null)
     page - where it is all happening
     edata - extra data to pass to php
 */
-function lookMoreClickEventActivate(btn, list, make_func, c_count, all_count, url, edata = {})
-{
-    btn.addEventListener('click', () => {
 
-        let data = {"current_count" : c_count};
-
-        if(edata !== {})
-        {
-            Object.keys(edata).forEach(key => {
-                data[key] = edata[key];
-            })
-        }
-
-        let _url = SERVER_PATH + url;
-
-        sendRequestJSON('POST', _url, data)
-            .then(data => {
-                c_count = data.new_count;
-                make_func(list, data.content)
-
-                if(c_count >= all_count)
-                {
-                    btn.style['display'] = 'none';
-                }   
-            })
-            .catch(err => {
-                console.error(err);
-            })
-    }); 
-}

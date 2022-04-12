@@ -1,5 +1,6 @@
 '': 'home/index'
-'review/([0-9]+)': 'home/view/$1'
+'review/([0-9]+)': 'reviews/view/$1'
+'write': 'reviews/write'
 
 'signup': 'security/signup'
 'login': 'security/login'
@@ -10,4 +11,4 @@
 'admin': 'admin/index'
 'admin/users': 'admin/users'
 
-'get/reviews': 'home/getReviews'
+'comment': 'comment/comment'

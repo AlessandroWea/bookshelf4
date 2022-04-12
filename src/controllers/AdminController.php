@@ -19,8 +19,8 @@ class AdminController extends BaseController
         parent::__construct();
         $this->view->layout = 'admin.php';
         // dd($this->view->layout);
-        // if(!Auth::is('admin'))
-        //     die('Access denied!');
+        if(!Auth::is(Auth::ROLE_ADMIN))
+            die('Access denied!');
     }
 
     public function actionIndex()

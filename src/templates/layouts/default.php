@@ -13,6 +13,6 @@
     <?=$content ?>
 </div>
 </body>
-<script src="public/js/request_functions.js"></script>
-<script src="public/js/make_html_functions.js"></script>
+<script src="/public/js/request_functions.js"></script>
+<script src="/public/js/make_html_functions.js"></script>
 </html>
