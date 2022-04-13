@@ -10,5 +10,6 @@
 
 'admin': 'admin/index'
 'admin/users': 'admin/users'
+'admin/reviews': 'admin/reviews'
 
 'comment': 'comment/comment'

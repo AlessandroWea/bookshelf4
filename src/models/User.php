@@ -27,4 +27,10 @@ class User
         $role = 'user';
         return Db::insert('users', compact('username', 'email', 'password', 'online', 'role'));
     }
+
+    public static function findAllCount()
+    {
+        $query = Db::execute("SELECT COUNT(*) FROM users");
+        return $query->fetch()['COUNT(*)'];
+    }
 }

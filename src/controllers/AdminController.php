@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace app\controllers;
 
 use app\models\User;
+use app\models\Review;
 use app\validators\UserValidator;
 
 use Malordo\Base\BaseController;
@@ -30,20 +31,26 @@ class AdminController extends BaseController
 
     public function actionUsers()
     {
-        $user_model = new User();
         $this->render('admin/users.php', [
-            'users' => $user_model->findAll(),
+            'users' => User::findAll(),
+        ]);
+    }
+
+    public function actionReviews()
+    {
+        $this->render('admin/reviews.php', [
+            'reviews' => Review::findAll(),
         ]);
     }
 
     public function actionSidebar()
     {
-        return $this->fragment('fragments/admin/sidebar.php');
-    }
+        $users_count = User::findAllCount();
+        $reviews_count = Review::findAllCount();
 
-    public function actionFooter()
-    {
-        $this->render('fragments/admin/footer.php');
+        return $this->fragment('fragments/admin/sidebar.php', compact(
+            'users_count', 'reviews_count'
+        ));
     }
 
 }
