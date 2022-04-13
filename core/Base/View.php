@@ -14,20 +14,32 @@ class View
         $this->layout = 'default.php';
     }
 
-    public function render(string $path, array $vars = []) : void
+    public function render(string $path, array $vars = [])
     {
-        $layoutPath = $this->layoutFolder . $this->layout;
-        if(!file_exists($layoutPath))
-            throw new \Exception("Layout file $layoutPath doesn't exist");
+        if($this->layout !== null){
+            $layoutPath = $this->layoutFolder . $this->layout;
+            if(!file_exists($layoutPath))
+                throw new \Exception("Layout file $layoutPath doesn't exist");
+        }
 
         if($vars)
             extract($vars);
-
         ob_start();
         require $path;
         $content = ob_get_clean();
         require $layoutPath;
     }
+
+	public function render_fragment($path, $vars = [])
+	{
+		if($vars)
+			extract($vars);
+
+        ob_start();
+        require $path;
+
+		return ob_get_clean();
+	}
 
 	public function redirect(string $url)
 	{

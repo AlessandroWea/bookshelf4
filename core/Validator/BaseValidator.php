@@ -16,7 +16,6 @@ class BaseValidator implements ValidatorInterface
         $rules = static::rules();
         $errors = [];
         foreach($data as $item => $value){
-
             $current_rules = $rules[$item];
             foreach($current_rules as $rule_index => $rule){
                 if($rule == 'string'){
@@ -32,6 +31,11 @@ class BaseValidator implements ValidatorInterface
                 else if(is_array($rule) && $rule_index == 'range'){
                     if(strlen($value) < $rule[0] || strlen($value) > $rule[1]){
                         $errors[$item][] = "The field must be in range $rule[0] - $rule[1]";
+                    }
+                }
+                else if($rule_index == 'equal'){
+                    if($value != $data[$rule[0]]){
+                        $errors[$item][] = "The field must be equal to $rule[0]";
                     }
                 }
             }

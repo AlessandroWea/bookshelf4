@@ -38,31 +38,38 @@ class SecurityController extends BaseController
 
     public function actionSignup()
     {
-        
-            // $errors = UserValidator::validate([
-            //     'email' => $email,
-            //     'password' => $password,
-            // ]);
+        $username = '';
+        $email = '';
+        $errors = [];
 
-            // if(!empty($errors)){
-            //     return $this->render('security/login.php', [
-            //         'errors' => $errors,
-            //         'email' => $email,
-            //         'password' => $password,
-            //     ]);
-            // }
-        $this->render('security/register.php', [
-            
-        ]);
+        if($this->request->isPost()){
+            $username = $this->request->input('username');
+            $email = $this->request->input('email');
+            $password = $this->request->input('password');
+            $repeat_password = $this->request->input('repeat_password');
+
+            $errors = UserValidator::validate([
+                'email' => $email,
+                'username' => $username,
+                'password1' => $password,
+                'password2' => $repeat_password,
+            ]);
+
+            d($errors);
+
+            if(empty($errors)){
+                $new_id = User::add($username, $email, $password);
+                return $this->redirect('/');
+            }
+        }
+
+        $this->render('security/register.php', compact('username', 'email', 'errors'));
     }
 
     public function actionLogout()
     {
-        //logout
-
-        //redirect to homepage
-
-
+        Auth::logout();
+        $this->redirect('/');
     }
 
 }

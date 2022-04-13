@@ -17,7 +17,10 @@ function render(string $filename, array $args = [])
 
 function renderController(string $controller, $action, $vars = [])
 {
-    call_user_func([new $controller, $action]);
+    $obj = new $controller();
+    if($obj === null)
+        throw new \Exception("Class $controller doesn't exist");
+    echo $obj->$action($vars ? extract($vars) : null);
 }
 
 function is(string $role)

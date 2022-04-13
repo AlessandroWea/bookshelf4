@@ -19,4 +19,12 @@ class User
         $query = Db::execute("SELECT * FROM users WHERE email=:email", compact('email'));
         return $query->fetch();
     }
+
+    public static function add($username, $email, $password)
+    {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $online = 0;
+        $role = 'user';
+        return Db::insert('users', compact('username', 'email', 'password', 'online', 'role'));
+    }
 }

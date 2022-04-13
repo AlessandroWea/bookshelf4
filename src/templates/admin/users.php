@@ -43,7 +43,7 @@
                         <td><?=$user['username']?></td>
                         <td><?=$user['email']?></td>
                         <td><?=$user['created']?></td>
-                        <td><?=($user['admin']) ? 'Admin' : 'User'?></td>
+                        <td><?=$user['role']?></td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>

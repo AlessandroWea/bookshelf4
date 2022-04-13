@@ -9,7 +9,7 @@ use Malordo\Request\Request;
 
 class BaseController
 {
-    public View $view;
+    private View $view;
     protected Request $request;
 
     public function __construct()
@@ -25,6 +25,20 @@ class BaseController
             throw new \Exception("File $fullPath doesn't exist");
 
         $this->view->render($fullPath, $vars);
+    }
+
+    public function changeLayout(string $layout)
+    {
+        $this->view->layout = $layout;
+    }
+
+    public function fragment(string $path, array $vars = [])
+    {
+        $fullPath = TEMPLATE_PATH . $path;
+        if(!file_exists($fullPath))
+            throw new \Exception("File $fullPath doesn't exist");
+
+        return $this->view->render_fragment($fullPath, $vars);
     }
 
     public function redirect(string $path)

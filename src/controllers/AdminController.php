@@ -17,16 +17,12 @@ class AdminController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->view->layout = 'admin.php';
+        $this->changeLayout('admin.php');
         // dd($this->view->layout);
-        if(!Auth::is(Auth::ROLE_ADMIN))
-            die('Access denied!');
     }
 
     public function actionIndex()
     {
-
-
         $this->render('admin/index.php', [
             
         ]);
@@ -38,6 +34,11 @@ class AdminController extends BaseController
         $this->render('admin/users.php', [
             'users' => $user_model->findAll(),
         ]);
+    }
+
+    public function actionSidebar()
+    {
+        return $this->fragment('fragments/admin/sidebar.php');
     }
 
     public function actionFooter()

@@ -12,7 +12,9 @@ class UserValidator extends BaseValidator
     {
         return [
             'email' => ['string', 'required'],
-            'password' => ['required', 'range' => [4,10]],
+            'username' => ['required'],
+            'password1' => ['required', 'range' => [4,10], 'equal' => ['password2']],
+            'password2' => ['required', 'equal' => ['password1']],
         ];
     }
 }

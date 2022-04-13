@@ -27,4 +27,9 @@ class HomeController extends BaseController
 
         $this->render('home/index.php', compact('reviews', 'page', 'last_page', 'total_count_of_reviews'));
     }
+
+    public function actionJs()
+    {
+        $this->view->render_fragment()
+    }
 }
