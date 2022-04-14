@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
+use Malordo\Base\BaseController;
+
 use app\models\User;
 use app\models\Review;
-use app\validators\UserValidator;
-
-use Malordo\Base\BaseController;
 
 use app\utils\Auth;
 

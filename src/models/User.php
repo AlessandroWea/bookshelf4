@@ -20,6 +20,13 @@ class User
         return $query->fetch();
     }
 
+    public static function findByUsername(string $email)
+    {
+        $query = Db::execute("SELECT * FROM users WHERE username=:username", compact('username'));
+        return $query->fetch();
+    }
+
+
     public static function add($username, $email, $password)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);

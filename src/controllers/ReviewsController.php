@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
-use app\models\Review;
 use Malordo\Base\BaseController;
+
+use app\models\Review;
 use app\models\Comment;
 use app\models\Like;
-use app\validators\ReviewValidator;
+
+use app\validators\AddingReviewValidator;
+
 use app\utils\Auth;
 
 class ReviewsController extends BaseController
@@ -42,15 +45,23 @@ class ReviewsController extends BaseController
             $authorname = $this->request->input('authorname');
             $theme = $this->request->input('theme');
             $text = $this->request->input('text');
-            $errors = ReviewValidator::validate(compact('bookname','authorname','theme','text'));
-            if(empty($errors)){
+
+            if(AddingReviewValidator::validate(compact('bookname','authorname','theme','text'))){
                 $new_id = Review::add(Auth::getUserId(), $bookname, $authorname, $theme, $text);
                 return $this->redirect("/review/$new_id");
+            }
+            else{
+                $errors = AddingReviewValidator::getErrors();
             }
 
         }
 
-
-        return $this->render('reviews/write.php', compact('bookname', 'authorname', 'theme', 'text', 'errors'));
+        return $this->render('reviews/write.php', compact(
+            'bookname',
+            'authorname',
+            'theme',
+            'text',
+            'errors'
+        ));
     }
 }

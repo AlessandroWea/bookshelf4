@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
-use app\models\Review;
 use Malordo\Base\BaseController;
-use app\models\Comment;
-use app\models\Like;
 
-use app\utils\Auth;
+use app\models\Review;
 
 class HomeController extends BaseController
 {
@@ -26,10 +23,5 @@ class HomeController extends BaseController
         $reviews = Review::findAllFromRange($offset, self::REVIEWS_PER_PAGE);
 
         $this->render('home/index.php', compact('reviews', 'page', 'last_page', 'total_count_of_reviews'));
-    }
-
-    public function actionJs()
-    {
-        $this->view->render_fragment()
     }
 }

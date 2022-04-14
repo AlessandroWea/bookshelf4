@@ -3,9 +3,12 @@
 namespace app\controllers;
 
 use Malordo\Base\BaseController;
-use app\validators\UserValidator;
+
 use app\models\User;
+
 use app\utils\Auth;
+
+use app\validators\SignupValidator;
 
 class SecurityController extends BaseController
 {
@@ -40,7 +43,6 @@ class SecurityController extends BaseController
     {
         $username = '';
         $email = '';
-        $errors = [];
 
         if($this->request->isPost()){
             $username = $this->request->input('username');
@@ -48,20 +50,20 @@ class SecurityController extends BaseController
             $password = $this->request->input('password');
             $repeat_password = $this->request->input('repeat_password');
 
-            $errors = UserValidator::validate([
-                'email' => $email,
+            if(SignupValidator::validate([
                 'username' => $username,
+                'email' => $email,
                 'password1' => $password,
                 'password2' => $repeat_password,
-            ]);
-
-            d($errors);
-
-            if(empty($errors)){
+            ])){
                 $new_id = User::add($username, $email, $password);
                 return $this->redirect('/');
             }
+            else {
+                $errors = SignupValidator::getErrors();
+            }
         }
+
 
         $this->render('security/register.php', compact('username', 'email', 'errors'));
     }
