@@ -14,14 +14,15 @@ class CommentController extends BaseController
     {
         if($this->request->isPost())
         {
-            $id = $this->request->input('id');
+            $review_id = $this->request->input('id');
             $text = $this->request->input('text');
+            
             $user = Auth::getUser();
 
             if(strlen($text) > 0)
-                Comment::add($user['id'], $id, $text);
+                Comment::add($user['id'], $review_id, $text);
 
-            $this->redirect("/review/$id");
+            $this->redirect("/review/$review_id");
         }
 
         die;

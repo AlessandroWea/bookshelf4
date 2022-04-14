@@ -43,6 +43,7 @@ class SecurityController extends BaseController
     {
         $username = '';
         $email = '';
+        $errors = [];
 
         if($this->request->isPost()){
             $username = $this->request->input('username');
