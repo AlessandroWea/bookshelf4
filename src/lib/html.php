@@ -33,6 +33,10 @@ function logged()
     return Auth::logged();
 }
 
+function userId()
+{
+    return Auth::getUserId();
+}
 // function path(string $name, array $params = [])
 // {
 //     // Application::getRoutes();

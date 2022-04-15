@@ -24,7 +24,7 @@
         <?php endif ?>
         <?php if(logged()): ?>
           <li class="nav-item">
-            <a class="nav-link" href="/profile/(current_user_id)">Profile</a>
+            <a class="nav-link" href="/profile/<?=userId()?>">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/write">Write</a>

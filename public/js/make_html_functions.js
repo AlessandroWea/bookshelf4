@@ -60,7 +60,7 @@ function make_reviews_list(where,reviews = [])
 
 }
 
-function make_reviews_list_profile(where,reviews = [])
+function make_reviews_list_profile(reviews = [])
 {
     let reviews_list = '';
 
@@ -78,6 +78,6 @@ function make_reviews_list_profile(where,reviews = [])
 
     });
 
-    where.innerHTML = reviews_list;
+    return reviews_list;
 
 }

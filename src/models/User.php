@@ -26,6 +26,12 @@ class User
         return $query->fetch();
     }
 
+    public static function findById($id)
+    {
+        $query = Db::execute("SELECT * FROM users WHERE id=:id", compact('id'));
+        return $query->fetch();
+    }
+
 
     public static function add($username, $email, $password)
     {

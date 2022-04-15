@@ -64,4 +64,17 @@ class ReviewsController extends BaseController
             'errors'
         ));
     }
+
+    public function actionGetReviews()
+    {
+        $data = $this->request->getData();
+
+        $count = $data->count;
+        $reviews = Review::findAllFromRange($count,2);
+        
+        exit(json_encode([
+            'count' => $count+2,
+            'reviews' => $reviews,
+        ]));
+    }
 }
