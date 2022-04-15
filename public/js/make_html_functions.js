@@ -60,7 +60,7 @@ function make_reviews_list(where,reviews = [])
 
 }
 
-function make_reviews_list_profile(reviews = [])
+function make_reviews_elements_profile(reviews = [])
 {
     let reviews_list = '';
 

@@ -14,6 +14,14 @@ class Review
         return $query->fetchAll();
     }
 
+    public static function findAllFromRangeByUserId($user_id, $offset, $limit)
+    {
+        $query = Database::execute("SELECT users.username, reviews.* FROM reviews JOIN users ON users.id=reviews.user_id WHERE reviews.user_id=:user_id LIMIT $offset, $limit", [
+            'user_id' => $user_id,
+        ]);
+        return $query->fetchAll(); 
+    }
+
     public static function findAll()
     {
         $query = Database::execute("SELECT users.username, reviews.* FROM reviews JOIN users ON users.id=reviews.user_id");

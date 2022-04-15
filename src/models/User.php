@@ -20,7 +20,7 @@ class User
         return $query->fetch();
     }
 
-    public static function findByUsername(string $email)
+    public static function findByUsername(string $username)
     {
         $query = Db::execute("SELECT * FROM users WHERE username=:username", compact('username'));
         return $query->fetch();

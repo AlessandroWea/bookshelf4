@@ -58,6 +58,7 @@ class SecurityController extends BaseController
                 'password2' => $repeat_password,
             ])){
                 $new_id = User::add($username, $email, $password);
+                Auth::auth(User::findById($new_id));
                 return $this->redirect('/');
             }
             else {

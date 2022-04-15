@@ -68,10 +68,10 @@ class ReviewsController extends BaseController
     public function actionGetReviews()
     {
         $data = $this->request->getData();
-
+        $user_id = $data->user_id;
         $count = $data->count;
-        $reviews = Review::findAllFromRange($count,2);
-        
+        $reviews = Review::findAllFromRangeByUserId($user_id,$count,2);
+
         exit(json_encode([
             'count' => $count+2,
             'reviews' => $reviews,
