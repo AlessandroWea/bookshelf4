@@ -22,5 +22,8 @@
 # CommentController
 'comment': 'comment/comment'
 
+# LikeController
+'like' : 'like/like'
+'unlike' : 'like/unlike'
 # api
 'api/get/reviews' : 'reviews/getReviews'

@@ -14,10 +14,11 @@
             <?=$review['text']?>
         </div>
         <hr>
-        <div class="button-container">
-            <button class="btn btn-danger">Like (<?=$likes_count?>)</button>
-        </div>
-        <hr>
+        <form method="POST" action="<?=$is_liked ? '/unlike' : '/like'?>">
+            <input type="hidden" name="review_id" value="<?=$review['id']?>">
+            <button class="btn btn-<?=$is_liked ? 'secondary' : 'danger'?>"><?=$is_liked ? 'Unlike' : 'Like'?> (<?=$likes_count?>)</button>
+        </form>
+        <hr class="mt-3">
         <div class="comments-container">
             <?php if(logged()):?>
                 <form method="POST" action="/comment" class="comments-write-box">

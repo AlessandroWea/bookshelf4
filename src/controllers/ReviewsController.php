@@ -21,11 +21,14 @@ class ReviewsController extends BaseController
         if(($review = Review::find($id)) === false)
             die('404 not found');
 
+        
+
         $this->render('home/view.php', [
             'review' => $review,
             'comments_count' => Comment::findAllCountByReviewId($id),
             'comments' => Comment::findAllByReviewId($id),
             'likes_count' => Like::findAllCountByReviewId($id),
+            'is_liked' => Like::find(Auth::getUserId(), $id) ? true : false,
         ]);
     }
 
@@ -68,6 +71,7 @@ class ReviewsController extends BaseController
     public function actionGetReviews()
     {
         $data = $this->request->getData();
+
         $user_id = $data->user_id;
         $count = $data->count;
         $reviews = Review::findAllFromRangeByUserId($user_id,$count,2);
