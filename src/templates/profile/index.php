@@ -33,10 +33,10 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col-12 reviews-container">
+        <div class="col-12 reviews-container mb-4">
 
         </div>
-        <div class="buttons text-center">
+        <div class="buttons text-center mb-3">
             <button id="look-more-btn" class="btn btn-primary">Look more</button>
         </div>
     </div>
@@ -49,9 +49,9 @@
 
         let current_count = 0;
         let user_id = <?=$user['id']?>;
-        let total_count = <?=$reviews_count ?? 3?>;
+        let total_count = <?=$reviews_count?>;
 
-        if(current_count >= total_count)
+        if(current_count >= total_count || total_count < 3)
             look_more_btn.style['display'] = 'none';
 
         sendRequestJSON('POST', "/api/get/reviews", {'count' : current_count, 'user_id' : user_id})
