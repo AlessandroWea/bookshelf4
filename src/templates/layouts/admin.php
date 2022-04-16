@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Admin</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -63,9 +63,6 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
-<script src="/public/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/public/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<script src="/public/plugins/jquery-knob/jquery.knob.min.js"></script>
 <script src="/public/dist/js/adminlte.js"></script>
 </body>
 </html>
