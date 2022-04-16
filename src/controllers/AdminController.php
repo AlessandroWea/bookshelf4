@@ -13,6 +13,8 @@ use app\utils\Auth;
 
 class AdminController extends BaseController
 {
+    const ELEMENTS_PER_PAGE = 3;
+    const NUMBER_OF_PAGE_LINKS = 3;
 
     public function __construct()
     {
@@ -37,8 +39,17 @@ class AdminController extends BaseController
 
     public function actionReviews()
     {
+        $page = $this->request->query('page') ?? 1;
+        $offset = self::ELEMENTS_PER_PAGE * ($page - 1);
+        $total_reviews = Review::findAllCount();
+        $total_pages = ceil($total_reviews / self::ELEMENTS_PER_PAGE);
+
         $this->render('admin/reviews.php', [
-            'reviews' => Review::findAll(),
+            'reviews' => Review::findAllFromRange($offset, self::ELEMENTS_PER_PAGE),
+            'total_pages' => $total_pages,
+            'elements_per_page' => self::ELEMENTS_PER_PAGE,
+            'number_of_page_links' => self::NUMBER_OF_PAGE_LINKS,
+            'page' => $page,
         ]);
     }
 

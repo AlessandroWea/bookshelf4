@@ -55,6 +55,24 @@
           </div>
         </div>
       </div><!-- /.container-fluid -->
+      <nav>
+        <ul class="pagination">
+          <?php if($total_pages > $number_of_page_links): ?>
+            
+            <?php if($page != 1): ?>
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <?php endif; ?>
+
+            <?php for($i = 0; $i < $number_of_page_links; $i++): ?>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <?php endfor; ?>
+            <?php if($page == $total_pages): ?>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <?php endif; ?>
+
+          <?php endif; ?>
+        </ul>
+      </nav>
     </section>
     <!-- /.content -->
   </div>
