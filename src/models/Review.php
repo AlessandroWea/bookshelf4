@@ -52,4 +52,9 @@ class Review
     {
         return Database::insert('reviews', compact('user_id', 'bookname', 'authorname', 'theme', 'text'));
     }
+
+    public static function delete($id)
+    {
+        Database::execute("DELETE FROM reviews WHERE id=:id", ['id' => $id]);
+    }
 }

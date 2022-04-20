@@ -34,6 +34,7 @@
                       <th>Theme</th>
                       <th>Authorname</th>
                       <th>Bookname </th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -44,6 +45,10 @@
                         <td><?=$review['theme']?></td>
                         <td><?=$review['authorname']?></td>
                         <td><?=$review['bookname']?></td>
+                        <td>
+                          <a href="/admin/reviews/view/<?=$review['id']?>" class="text-success mr-1"><i class="fas fa-eye"></i></a>
+                          <a href="/admin/reviews/delete/<?=$review['id']?>" class="text-danger"><i class="fas fa-ban"></i></a>
+                        </td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>

@@ -19,7 +19,13 @@
 # AdminController
 'admin': 'admin/index'
 'admin/users': 'admin/users'
+
+'admin/users/view/([0-9]+)': 'admin/viewUser/$1'
+'admin/users/delete/([0-9]+)': 'admin/deleteUser/$1'
+
 'admin/reviews': 'admin/reviews'
+'admin/reviews/view/([0-9]+)': 'admin/viewReview/$1'
+'admin/reviews/delete/([0-9]+)': 'admin/deleteReview/$1'
 
 # CommentController
 'comment': 'comment/comment'

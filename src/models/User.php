@@ -32,6 +32,10 @@ class User
         return $query->fetch();
     }
 
+    public static function delete($id)
+    {
+        Db::execute("DELETE FROM users WHERE id=:id", ['id'=>$id]);
+    }
 
     public static function add($username, $email, $password)
     {

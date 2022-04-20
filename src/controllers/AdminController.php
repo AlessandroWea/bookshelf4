@@ -37,6 +37,30 @@ class AdminController extends BaseController
         ]);
     }
 
+    public function actionViewUser($id)
+    {
+        $this->redirect("/profile/$id");
+    }
+
+    public function actionDeleteUser($id)
+    {
+        User::delete($id);
+
+        $this->redirect('/admin/users');
+    }
+
+    public function actionViewReview($id)
+    {
+        $this->redirect("/review/$id");
+    }
+
+    public function actionDeleteReview($id)
+    {
+        Review::delete($id);
+
+        $this->redirect('/admin/reviews');
+    }
+
     public function actionReviews()
     {
         $page = $this->request->query('page') ?? 1;

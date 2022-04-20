@@ -34,6 +34,7 @@
                       <th>Email</th>
                       <th>Created</th>
                       <th>Role</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -44,6 +45,12 @@
                         <td><?=$user['email']?></td>
                         <td><?=$user['created']?></td>
                         <td><?=$user['role']?></td>
+                        <!-- <td><span><i class="fas fa-eye"></i> </span> <span><i class="fas fa-ban"></i></span></td> -->
+                        <!-- <td><i class="fas fa-eye mr-2"></i><i class="fas fa-ban"></i></td> -->
+                        <td>
+                          <a href="/admin/users/view/<?=$user['id']?>" class="text-success mr-1"><i class="fas fa-eye"></i></a>
+                          <a href="/admin/users/delete/<?=$user['id']?>" class="text-danger"><i class="fas fa-ban"></i></a>
+                        </td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>
