@@ -27,6 +27,7 @@ class ProfileController extends BaseController
             die('404 NOT FOUND');
 
         return $this->render('profile/index.php', [
+            'title' => 'Profile: ' . $user['username'],
             'user' => $user,
             'reviews_count' => Review::findAllCountByUserId($id),
             'followers_count' => Follower::followersCount($id),

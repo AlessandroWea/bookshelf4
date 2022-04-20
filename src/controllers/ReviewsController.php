@@ -21,9 +21,8 @@ class ReviewsController extends BaseController
         if(($review = Review::find($id)) === false)
             die('404 not found');
 
-        
-
         $this->render('home/view.php', [
+            'title' => 'Review: ' . $review['theme'],
             'review' => $review,
             'comments_count' => Comment::findAllCountByReviewId($id),
             'comments' => Comment::findAllByReviewId($id),
@@ -36,6 +35,8 @@ class ReviewsController extends BaseController
     {
         if(!Auth::logged())
             $this->redirect('login');
+
+        $title = 'Write review';
 
         $bookname = '';
         $authorname = '';
@@ -60,6 +61,7 @@ class ReviewsController extends BaseController
         }
 
         return $this->render('reviews/write.php', compact(
+            'title',
             'bookname',
             'authorname',
             'theme',

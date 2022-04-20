@@ -14,6 +14,7 @@ class HomeController extends BaseController
 
     public function actionIndex()
     {
+        $title = 'Homepage';
         $page = $this->request->query('page') ?? 1;
 
         $total_count_of_reviews = Review::findAllCount();
@@ -22,6 +23,6 @@ class HomeController extends BaseController
 
         $reviews = Review::findAllFromRange($offset, self::REVIEWS_PER_PAGE);
 
-        $this->render('home/index.php', compact('reviews', 'page', 'last_page', 'total_count_of_reviews'));
+        $this->render('home/index.php', compact('title', 'reviews', 'page', 'last_page', 'total_count_of_reviews'));
     }
 }
