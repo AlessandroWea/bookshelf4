@@ -45,4 +45,11 @@ class Follower
         $query = Db::execute("SELECT COUNT(*) FROM followers WHERE id_user=:id", ['id'=>$id]);
         return $query->fetch()['COUNT(*)'];
     }
+
+    public static function isFollowedBy($id_followed, $id_user)
+    {
+        $query = Db::execute("SELECT * FROM followers WHERE id_followed=:id_followed AND id_user=:id_user", compact('id_followed', 'id_user'));
+        
+        return $query->fetch() ? true : false;
+    }
 }

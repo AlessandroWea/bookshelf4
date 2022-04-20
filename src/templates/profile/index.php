@@ -5,10 +5,16 @@
         <div class="col-4">
         <img src="/public/img/default.png" alt="..." class="img-thumbnail">
         <!-- if guest view -->
-        <?php if($user['id'] != userId()): ?> 
-        <div>
-            <a href="#" class="btn btn-primary w-100 mb-1">Follow</a>
-        </div>
+        <?php if($user['id'] != userId()): ?>
+            <?php if($is_followed): ?>
+                <form method="POST" action="/unfollow/<?=$user['id']?>">
+                    <button class="btn btn-primary w-100 mb-1">Unfollow</button>
+                </form>
+            <?php else: ?>
+                <form method="POST" action="/follow/<?=$user['id']?>">
+                    <button class="btn btn-primary w-100 mb-1">Follow</button>
+                </form>
+            <?php endif ?>
         <?php else: ?>
             <div>
                 <a href="#" class="btn btn-primary w-100 mb-1">Change avatar</a>
@@ -23,8 +29,8 @@
             <p><span class="h3 m-1">Username:</span><?=$user['username']?></p>
             <p><span class="h3 m-1">Email:</span> <?=$user['email']?></p>
             <hr>
-            <p><span class="h4 m-1">Followers count: </span>0</p>
-            <p><span class="h4 m-1">Followings count: </span>0</p>
+            <p><span class="h4 m-1">Followers count: </span><?=$followers_count?></p>
+            <p><span class="h4 m-1">Followings count: </span><?=$followings_count?></p>
         </div>
     </div>
     <hr>

@@ -13,6 +13,8 @@
 # ProfileController
 'profile/([0-9]+)': 'profile/index/$1'
 'profile/edit' : 'profile/edit'
+'follow/([0-9]+)': 'profile/follow/$1'
+'unfollow/([0-9]+)': 'profile/unfollow/$1'
 
 # AdminController
 'admin': 'admin/index'
@@ -25,5 +27,6 @@
 # LikeController
 'like' : 'like/like'
 'unlike' : 'like/unlike'
+
 # api
 'api/get/reviews' : 'reviews/getReviews'

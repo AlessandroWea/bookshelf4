@@ -9,6 +9,7 @@ use Malordo\Base\BaseController;
 use app\utils\Auth;
 use app\models\User;
 use app\models\Review;
+use app\models\Follower;
 
 class ProfileController extends BaseController
 {
@@ -25,11 +26,42 @@ class ProfileController extends BaseController
         if(!$user)
             die('404 NOT FOUND');
 
-        $reviews_count = Review::findAllCountByUserId($id);
+        return $this->render('profile/index.php', [
+            'user' => $user,
+            'reviews_count' => Review::findAllCountByUserId($id),
+            'followers_count' => Follower::followersCount($id),
+            'followings_count' => Follower::followingsCount($id),
+            'is_followed' => Follower::isFollowedBy($id, Auth::getUserId()),
+        ]);
+    }
 
-        return $this->render('profile/index.php', compact(
-            'user', 'reviews_count',
-        ));
+    public function actionFollow($id)
+    {
+        $user = User::findById($id);
+        if(!$user)
+            die('404 NOT FOUND');
+
+        //check if already follows
+        $is_followed = Follower::isFollowedBy($id, Auth::getUserId());
+        if(!$is_followed){
+            Follower::follow(Auth::getUserId(), $id);
+        }
+
+        $this->redirect("/profile/$id");
+    }
+
+    public function actionUnfollow($id)
+    {
+        $user = User::findById($id);
+        if(!$user)
+            die('404 NOT FOUND');
+
+        $is_followed = Follower::isFollowedBy($id, Auth::getUserId());
+        if($is_followed){
+            Follower::unfollow(Auth::getUserId(), $id);
+        }
+
+        $this->redirect("/profile/$id");
     }
 
 }
