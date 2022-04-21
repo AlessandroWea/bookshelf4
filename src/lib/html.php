@@ -37,18 +37,3 @@ function userId()
 {
     return Auth::getUserId();
 }
-// function path(string $name, array $params = [])
-// {
-//     // Application::getRoutes();
-//     // foreach($route as $route)
-//     // {
-//     //     if($route['name'] === $name)
-//     //     {
-//     //         $url = 
-//     //     }
-//     // }
-//     //get routes from somewhere
-//     //if 'name' equeals one from routes
-//     //  construct url
-//     //return url
-// }

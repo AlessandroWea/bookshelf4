@@ -15,6 +15,7 @@
 'profile/edit' : 'profile/edit'
 'follow/([0-9]+)': 'profile/follow/$1'
 'unfollow/([0-9]+)': 'profile/unfollow/$1'
+'profile/load-avatar': 'profile/loadAvatar'
 
 # AdminController
 'admin': 'admin/index'

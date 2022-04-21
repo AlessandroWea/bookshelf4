@@ -3,7 +3,11 @@
 <div class="container">
     <div class="row mt-2">
         <div class="col-4">
-        <img src="/public/img/default.png" alt="..." class="img-thumbnail">
+        <?php if($user['img'] !== null): ?>
+            <img src="/public/upload/profile/<?=$user['img']?>" alt="avatar" class="img-thumbnail">
+        <?php else: ?>
+            <img src="/public/img/default.png" alt="..." class="img-thumbnail">
+        <?php endif ?>
         <!-- if guest view -->
         <?php if($user['id'] != userId()): ?>
             <?php if($is_followed): ?>
@@ -17,7 +21,10 @@
             <?php endif ?>
         <?php else: ?>
             <div>
-                <a href="#" class="btn btn-primary w-100 mb-1">Change avatar</a>
+                <form action="/profile/load-avatar" id="form-avatar" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="avatar-input" onchange="this.form.submit()" style="display: none" name="avatar">
+                    <label for="avatar-input" class="btn btn-primary w-100 mb-1">Change avatar</label>
+                </form>
                 <a href="#" class="btn btn-primary w-100">Edit info</a>
             </div>
         <?php endif ?>
@@ -78,6 +85,7 @@
                 }
 
             })
+
     }
 
 

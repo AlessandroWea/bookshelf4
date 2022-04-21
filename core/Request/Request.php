@@ -50,6 +50,11 @@ class Request
         return $_GET[$key] ?? null;
     }
 
+    public function file(string $key)
+    {
+        return $_FILES[$key] ?? null;
+    }
+
     public function has(string $key)
     {
         if(!array_key_exists($key, $_GET) && !array_key_exists($key, $_POST)){

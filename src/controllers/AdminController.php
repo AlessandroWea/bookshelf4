@@ -69,7 +69,7 @@ class AdminController extends BaseController
         $total_pages = ceil($total_reviews / self::ELEMENTS_PER_PAGE);
 
         $this->render('admin/reviews.php', [
-            'reviews' => Review::findAllFromRange($offset, self::ELEMENTS_PER_PAGE),
+            'reviews' => Review::findAllFromRange($offset, 100),
             'total_pages' => $total_pages,
             'elements_per_page' => self::ELEMENTS_PER_PAGE,
             'number_of_page_links' => self::NUMBER_OF_PAGE_LINKS,

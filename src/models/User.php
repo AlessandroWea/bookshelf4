@@ -50,4 +50,12 @@ class User
         $query = Db::execute("SELECT COUNT(*) FROM users");
         return $query->fetch()['COUNT(*)'];
     }
+
+    public static function loadAvatar($id, $img_name)
+    {
+        $query = Db::execute("UPDATE users SET img=:img WHERE id=:id", [
+            'img' => $img_name,
+            'id' => $id,
+        ]);
+    }
 }
