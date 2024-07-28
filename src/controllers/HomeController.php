@@ -14,6 +14,7 @@ class HomeController extends BaseController
 
     public function actionIndex()
     {
+        echo 'ee';
         $title = 'Homepage';
         $page = $this->request->query('page') ?? 1;
 

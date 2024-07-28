@@ -9,11 +9,11 @@ include 'src/lib/debug_func.php';
 include 'src/lib/html.php';
 
 define('ROOT_PATH', realpath(dirname(__FILE__)));
-
 use Malordo\Application\Application;
 use Malordo\Router\Router;
 
 $app = new Application(__DIR__, new Router());
+echo 'ee';
 try {
     $app->run();
 } catch( \Exception $e) {
